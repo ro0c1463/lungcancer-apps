@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>肺癌学会認定医 学習アプリ</title>
+<style>
+:root{
+  --bg:#f4f7f8; --card-bg:#ffffff; --text:#1c2b30; --sub:#5a6b70;
+  --accent:#0f6b7a; --border:#d7e0e2; --shadow:rgba(15,60,70,.12);
+}
+:root[data-theme="dark"]{
+  --bg:#141c1e; --card-bg:#1d2a2d; --text:#e6eef0; --sub:#a3b4b8;
+  --accent:#4fb3c2; --border:#2e4145; --shadow:rgba(0,0,0,.4);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141c1e; --card-bg:#1d2a2d; --text:#e6eef0; --sub:#a3b4b8;
+    --accent:#4fb3c2; --border:#2e4145; --shadow:rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:32px 16px 48px;
+}
+h1{
+  font-size:1.4rem;
+  text-align:center;
+  margin:8px 0 4px;
+}
+p.lead{
+  color:var(--sub);
+  text-align:center;
+  margin:0 0 28px;
+  font-size:.95rem;
+}
+.links{
+  width:100%;
+  max-width:480px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.card{
+  display:flex;
+  align-items:center;
+  min-height:56px;
+  padding:20px 22px;
+  border-radius:14px;
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  box-shadow:0 2px 10px var(--shadow);
+  color:var(--text);
+  text-decoration:none;
+  font-size:1.05rem;
+  font-weight:600;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.card:active{
+  transform:scale(.98);
+}
+.card .arrow{
+  margin-left:auto;
+  color:var(--accent);
+  font-size:1.3rem;
+}
+.sync{
+  width:100%;
+  max-width:480px;
+  margin-top:28px;
+  padding:18px 20px;
+  border-radius:14px;
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  box-shadow:0 2px 10px var(--shadow);
+}
+.sync h2{
+  font-size:1rem;
+  margin:0 0 4px;
+}
+.sync p.note{
+  color:var(--sub);
+  font-size:.8rem;
+  margin:0 0 14px;
+  line-height:1.5;
+}
+.sync .btn-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.sync button,
+.sync .file-btn{
+  appearance:none;
+  border:1px solid var(--accent);
+  border-radius:10px;
+  background:transparent;
+  color:var(--accent);
+  font:inherit;
+  font-size:.9rem;
+  font-weight:600;
+  padding:8px 14px;
+  cursor:pointer;
+}
+.sync button:active,
+.sync .file-btn:active{
+  transform:scale(.97);
+}
+.sync .msg{
+  font-size:.85rem;
+  margin:10px 0 0;
+  min-height:1.2em;
+}
+.sync .msg.ok{color:var(--accent);}
+.sync .msg.err{color:#c0504d;}
+.sync details{
+  margin-top:12px;
+  font-size:.85rem;
+}
+.sync details summary{
+  cursor:pointer;
+  color:var(--sub);
+}
+.sync textarea{
+  width:100%;
+  margin-top:8px;
+  min-height:110px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--bg);
+  color:var(--text);
+  font-size:.75rem;
+  padding:8px;
+  resize:vertical;
+}
+footer{
+  margin-top:36px;
+  color:var(--sub);
+  font-size:.8rem;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+<h1>肺癌学会認定医 学習アプリ</h1>
+<p class="lead">学習したいアプリを選択してください</p>
+<!-- Note: link hrefs below use the deployed (GitHub Pages) filenames (curriculum.html, flashcards-2025.html, flashcards-2024.html). When index.html is opened directly from the repo root (file://), these links will not resolve locally — that is expected; they only work on the deployed GitHub Pages site. -->
+<div class="links">
+  <a class="card" href="curriculum.html">
+    カリキュラム学習アプリ
+    <span class="arrow">›</span>
+  </a>
+  <a class="card" href="lectures.html">eセミナー講義ノート<span class="arrow">›</span></a>
+  <a class="card" href="flashcards-2025.html">
+    ガイドライン2025 フラッシュカード
+    <span class="arrow">›</span>
+  </a>
+  <a class="card" href="flashcards-2024.html">
+    ガイドライン2024 フラッシュカード
+    <span class="arrow">›</span>
+  </a>
+  <a class="card" href="quiz.html">
+    想定問題集(演習)
+    <span class="arrow">›</span>
+  </a>
+</div>
+<section class="sync">
+  <h2>進捗データの引き継ぎ</h2>
+  <p class="note">全アプリの学習進捗をJSONで書き出し/読み込みして、別の端末に移せます。この機能は同じサイト(https://ro0c1463.github.io/lungcancer-apps/)上で使ってください(file:// で開いた場合は各アプリと進捗が共有されないことがあります)。</p>
+  <div class="btn-row">
+    <button id="exportBtn">書き出し(ダウンロード)</button>
+    <label class="file-btn" for="importFile">読み込み(ファイル選択)</label>
+    <input type="file" id="importFile" accept=".json,application/json" style="display:none">
+  </div>
+  <p class="msg" id="syncMsg"></p>
+  <details>
+    <summary>コピー&amp;貼り付けで移す(モバイル向け)</summary>
+    <div class="btn-row" style="margin-top:8px">
+      <button id="copyBtn">クリップボードにコピー</button>
+      <button id="pasteImportBtn">貼り付け内容を取り込み</button>
+    </div>
+    <textarea id="syncText" placeholder="ここに書き出したJSONを貼り付けて「取り込み」を押してください"></textarea>
+  </details>
+</section>
+<script>
+(function(){
+  // haigan_progress は 2024/2025 フラッシュカードで共用キー(既存挙動どおり丸ごと移す)
+  var KEYS = [
+    ["haigan_progress", "フラッシュカード", function(v){ return Object.keys(v).length + "件"; }],
+    ["haigan_curriculum_progress", "カリキュラム", function(v){ return Object.keys(v).length + "件"; }],
+    ["haigan_lecture_progress", "講義ノート", function(v){ return Object.keys(v).filter(function(k){return v[k];}).length + "件"; }],
+    ["haigan_quiz_progress", "問題集", function(v){ return Object.keys(v.answered || {}).length + "問"; }],
+    ["haigan_theme", "テーマ設定", function(){ return ""; }]
+  ];
+  var msg = document.getElementById("syncMsg");
+  function say(text, ok){ msg.textContent = text; msg.className = "msg " + (ok ? "ok" : "err"); }
+
+  function collect(){
+    var data = {};
+    KEYS.forEach(function(k){
+      var raw = localStorage.getItem(k[0]);
+      if(raw === null) return;
+      if(k[0] === "haigan_theme"){ data[k[0]] = raw; return; }
+      try{ data[k[0]] = JSON.parse(raw); }catch(e){}
+    });
+    return { version: 1, exportedAt: new Date().toISOString(), data: data };
+  }
+  function summarize(data){
+    var parts = [];
+    KEYS.forEach(function(k){
+      if(!(k[0] in data)) return;
+      if(k[0] === "haigan_theme"){ parts.push("テーマ設定"); return; }
+      try{ parts.push(k[1] + " " + k[2](data[k[0]])); }catch(e){ parts.push(k[1]); }
+    });
+    return parts.join(" / ");
+  }
+  function exportJson(){
+    var payload = collect();
+    if(Object.keys(payload.data).length === 0){ say("書き出せる進捗データがありません。", false); return null; }
+    say("書き出しました: " + summarize(payload.data), true);
+    return JSON.stringify(payload);
+  }
+  function doImport(text){
+    var payload;
+    try{ payload = JSON.parse(text); }catch(e){ say("JSONとして読み込めませんでした。", false); return; }
+    if(!payload || typeof payload !== "object" || typeof payload.data !== "object" || payload.data === null){
+      say("形式が不正です(version / data がありません)。", false); return;
+    }
+    var valid = {};
+    KEYS.forEach(function(k){
+      var v = payload.data[k[0]];
+      if(v === undefined) return;
+      if(k[0] === "haigan_theme"){ if(typeof v === "string") valid[k[0]] = v; return; }
+      if(typeof v === "object" && v !== null) valid[k[0]] = v;
+    });
+    if(Object.keys(valid).length === 0){ say("取り込める進捗データが含まれていません。", false); return; }
+    if(!confirm("以下の進捗をこの端末のデータに上書きします。よろしいですか?\n\n" + summarize(valid))) return;
+    Object.keys(valid).forEach(function(key){
+      localStorage.setItem(key, key === "haigan_theme" ? valid[key] : JSON.stringify(valid[key]));
+    });
+    say("取り込みました: " + summarize(valid), true);
+  }
+
+  document.getElementById("exportBtn").addEventListener("click", function(){
+    var json = exportJson();
+    if(json === null) return;
+    var d = new Date();
+    var name = "haigan-progress-" + d.getFullYear() +
+      String(d.getMonth()+1).padStart(2,"0") + String(d.getDate()).padStart(2,"0") + ".json";
+    var blob = new Blob([json], {type:"application/json"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  });
+
+  document.getElementById("importFile").addEventListener("change", function(){
+    var file = this.files && this.files[0];
+    this.value = "";
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(){ doImport(reader.result); };
+    reader.onerror = function(){ say("ファイルを読み込めませんでした。", false); };
+    reader.readAsText(file);
+  });
+
+  document.getElementById("copyBtn").addEventListener("click", function(){
+    var json = exportJson();
+    if(json === null) return;
+    document.getElementById("syncText").value = json;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(json).then(function(){
+        say("クリップボードにコピーしました。", true);
+      }, function(){
+        say("下の欄に表示しました。手動でコピーしてください。", true);
+      });
+    }else{
+      say("下の欄に表示しました。手動でコピーしてください。", true);
+    }
+  });
+
+  document.getElementById("pasteImportBtn").addEventListener("click", function(){
+    var text = document.getElementById("syncText").value.trim();
+    if(!text){ say("テキスト欄が空です。書き出したJSONを貼り付けてください。", false); return; }
+    doImport(text);
+  });
+})();
+</script>
+<footer>肺癌学会認定医試験 学習支援ツール</footer>
+</body>
+</html>
